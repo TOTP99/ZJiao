@@ -572,32 +572,32 @@
   }
   #westernReport {
     text-align: left;
-    font-size: 13px;
-    line-height: 1.55;
+    font-size: 11px;
+    line-height: 1.4;
     max-height: 52vh;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding: 4px 2px 8px;
+    padding: 2px 2px 5px;
   }
   #westernReport .w-hero {
     background: linear-gradient(135deg, rgba(201,162,39,0.12), rgba(255,252,240,0.5));
     border: 1px solid var(--gold-pale);
-    border-radius: 10px;
-    padding: 10px 12px;
-    margin-bottom: 10px;
+    border-radius: 8px;
+    padding: 6px 8px;
+    margin-bottom: 6px;
     color: #3a2e1a;
   }
   #westernReport .w-hero-title {
     font-weight: 700;
     color: var(--gold-deep);
-    font-size: 15px;
-    margin-bottom: 4px;
+    font-size: 13px;
+    margin-bottom: 2px;
   }
-  #westernReport .w-hero-sub { font-size: 12px; color: #5a4a30; }
+  #westernReport .w-hero-sub { font-size: 10px; color: #5a4a30; }
   #westernReport .w-acc {
     border: 1px solid rgba(201,162,39,0.35);
-    border-radius: 10px;
-    margin-bottom: 8px;
+    border-radius: 8px;
+    margin-bottom: 5px;
     overflow: hidden;
     background: rgba(255,253,246,0.65);
   }
@@ -605,39 +605,40 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    padding: 10px 12px;
+    gap: 6px;
+    padding: 6px 9px;
     cursor: pointer;
     user-select: none;
     font-weight: 600;
+    font-size: 11px;
     color: var(--gold-deep);
     background: rgba(201,162,39,0.08);
   }
   #westernReport .w-acc-hd:active { background: rgba(201,162,39,0.16); }
   #westernReport .w-acc-hd .w-acc-ico {
-    font-size: 11px;
+    font-size: 9px;
     color: #8a6f3f;
     transition: transform 0.2s;
   }
   #westernReport .w-acc.open .w-acc-ico { transform: rotate(90deg); }
   #westernReport .w-acc-bd {
     display: none;
-    padding: 8px 12px 12px;
+    padding: 5px 9px 7px;
     border-top: 1px solid rgba(201,162,39,0.2);
   }
   #westernReport .w-acc.open .w-acc-bd { display: block; }
-  #westernReport .w-line { margin: 4px 0; color: #3a2e1a; }
-  #westernReport .w-sub { color: #5a4a30; font-size: 12px; margin: 4px 0 6px; }
+  #westernReport .w-line { margin: 2px 0; color: #3a2e1a; }
+  #westernReport .w-sub { color: #5a4a30; font-size: 10px; margin: 3px 0 4px; }
   #westernReport .w-chip {
     display: inline-block;
-    padding: 2px 8px;
-    margin: 2px 4px 2px 0;
+    padding: 1px 6px;
+    margin: 1px 3px 1px 0;
     border-radius: 999px;
     background: rgba(201,162,39,0.15);
     color: #5a4526;
-    font-size: 11px;
+    font-size: 9px;
   }
-  #westernReport .w-note { color: #8a6f3f; font-size: 11px; margin-top: 8px; }
+  #westernReport .w-note { color: #8a6f3f; font-size: 9px; margin-top: 5px; }
   #westernDictBox {
     display: none;
     text-align: left;
@@ -5826,6 +5827,9 @@
   // ============================================================
   const WESTERN_STORAGE_KEY = 'yumiao_western_form_v1';
   const W_SIGN = ['白羊座','金牛座','双子座','巨蟹座','狮子座','处女座','天秤座','天蝎座','射手座','摩羯座','水瓶座','双鱼座'];
+  const W_SIGN_GLYPH = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
+  function signName(idx){ return W_SIGN_GLYPH[idx]+W_SIGN[idx]; }
+  function signOf(p){ return signName(p.signIdx); }
   const W_ELEM = ['火','土','风','水','火','土','风','水','火','土','风','水'];
   const W_QUAL = ['基本','固定','变动','基本','固定','变动','基本','固定','变动','基本','固定','变动'];
   const W_PLANETS = [
@@ -5839,6 +5843,12 @@
   const SUN_I = {0:'热情主动、冲动、领导力强，喜欢开创与挑战。',1:'稳定务实、享受感官、有耐心与毅力，重视安全感。',2:'好奇多变、沟通力强、思维敏捷，喜欢学习与交流。',3:'情感丰富、护家、直觉敏锐，重视安全感与情感连结。',4:'自信大方、有创造力与表现欲，喜欢被认可与领导。',5:'细致分析、追求完美、服务导向，务实且注重细节。',6:'追求和谐、外交手腕佳、审美高，重视关系与公平。',7:'深刻强烈、洞察力强、有转化力，情感与意志坚定。',8:'乐观冒险、追求真理与自由，喜欢探索与哲学思考。',9:'有责任感、野心强、务实坚韧，追求成就与地位。',10:'独立创新、人道主义、思想前卫，重视自由与群体。',11:'敏感浪漫、同情心强、有艺术与灵性倾向，易受环境影响。'};
   const MOON_I = {0:'情绪直接冲动，需要行动与独立空间来处理感受。',1:'情感稳定，通过感官与物质安全感获得安慰。',2:'情绪多变，需要通过说话、写作或学习来调节情绪。',3:'情感需求强烈，重视家庭与照顾他人，情绪易受影响。',4:'需要被欣赏与表现，情感表达戏剧化且温暖。',5:'通过服务与分析来处理情绪，可能过度自我批评。',6:'需要和谐关系，情绪受伴侣与环境平衡影响大。',7:'情感深刻强烈，需要深度亲密与信任，不易轻易表露。',8:'情绪乐观，通过冒险、旅行或哲学思考来获得自由感。',9:'情感内敛务实，通过成就与责任感获得安全感。',10:'情感独立客观，重视友谊与自由，可能显得疏离。',11:'情绪敏感易共鸣，需要独处与艺术/灵性来滋养。'};
   const ASC_I = {0:'外在给人直接、有活力、主动的印象，行动力强。',1:'外在沉稳、可靠、有气质，给人安全与美感。',2:'外在灵活、健谈、年轻感，思维反应快。',3:'外在温和、有保护欲、情绪敏感，亲和力强。',4:'外在自信、有魅力、存在感强，喜欢被注意。',5:'外在整洁、细致、谦逊，给人可靠与专业感。',6:'外在优雅、有礼貌、追求平衡，社交能力佳。',7:'外在神秘、强烈、有穿透力，给人深刻印象。',8:'外在乐观、直率、有冒险气质，喜欢广阔视野。',9:'外在严肃、有威严、成熟稳重，给人可靠感。',10:'外在独特、独立、有未来感，思想前卫。',11:'外在柔和、梦幻、有艺术气质，易适应环境。'};
+  const MERCURY_I = {0:'思考快、说话直，想到就说，擅长临场反应，但易漏细节，宜说完先停一停再补充。',1:'思路稳、讲求实用，不喜空谈，习惯把话想透再开口，语速慢但可信度高。',2:'一心多用，话题跳得快，擅长归纳信息、串联人脉，但容易只讲皮毛，需练深挖一件事。',3:'凭感觉思考，记性好、重情境，讲道理前先讲情绪，适合共情式沟通而非纯说理。',4:'表达自信有戏剧性，擅长讲故事、带节奏，但要留意是否听得进不同意见。',5:'逻辑严谨、挑错本能强，适合做审核与规划，但对自己和别人都容易太苛刻。',6:'习惯先看双方立场再表态，说话讲分寸、给台阶，优点是圆融，缺点是决断慢。',7:'话不多但一开口有分量，善于看穿表面，适合深度对话，不喜欢寒暄式社交。',8:'想法跳跃、爱讲大道理和远景，乐观有感染力，但细节和时限容易被忽略。',9:'说话务实克制，重证据轻情绪，适合谈判与规划，但有时显得不近人情。',10:'思维跳脱常规，点子多、爱唱反调，适合出主意，但需要有人帮忙落地执行。',11:'思考跳跃、直觉先于逻辑，语言有画面感，容易被情绪或环境带偏方向。'};
+  const VENUS_I = {0:'喜欢直接的追求方式，讨厌拖泥带水，热恋期来得快也退得快，忠于当下的心动。',1:'重视稳定与实感，喜欢被用心对待而非甜言蜜语，一旦认定较少变心。',2:'喜欢有话聊、够聪明的对象，怕关系一成不变，需要新鲜感与思想上的共振。',3:'重感情、念旧，喜欢被照顾也享受照顾人，安全感是感情能否深入的关键。',4:'喜欢被崇拜、被公开表达在意，恋爱带点戏剧感，大方给爱也要求同等回应。',5:'表达含蓄，习惯用行动而非言语示爱，挑剔是因为在意，值得被读懂。',6:'看重公平与美感，讨厌冲突，愿意为关系妥协，但要小心一味迁就失去自我。',7:'爱得深、也占有欲强，喜欢强度高的连结，不满足于表面关系，重信任与忠诚。',8:'喜欢自由、有空间的关系，怕被束缚，吸引力来自共同冒险与见识的碰撞。',9:'择偶务实、重长期承诺，不轻易开始也不轻易结束，看重责任与匹配度。',10:'喜欢独立、有个性的对象，需要关系里保留自我空间，忽冷忽热是常态。',11:'浪漫、易心软，容易为爱奉献甚至忽略界限，宜分清幻想与现实中的对方。'};
+  const MARS_I = {0:'行动力强、说做就做，遇事第一反应是冲上去，优点是效率高，缺点是欠考虑。',1:'启动慢但后劲足，一旦下定决心很难被劝退，发火前会先隐忍很久。',2:'精力分散在多件事上，靠脑力和话语较量而非蛮力，需要防止三分钟热度。',3:'情绪化行动，被戳中软肋才会真正爆发，平常更倾向以退为进、迂回处理。',4:'做事讲排场、要面子，冲劲十足也要被看见，压力多来自「输不起」的心态。',5:'行动前先做计划和检查清单，效率高但容易因追求完美而拖延启动。',6:'不喜欢正面冲突，倾向谈判与折中，压抑的怒气容易转成拖延式抵抗。',7:'意志力极强，认定的事会不计代价拿下，一旦被激怒，报复心也强，宜找出口宣泄而非隐忍。',8:'行动直率、爱冒险，讨厌被规则束缚，冲劲很足但耐力容易随热情消退。',9:'行动有纪律、按部就班，愿意为长期目标忍耐一时，是团队里的定海神针。',10:'行动方式反传统，喜欢用新方法解决旧问题，压力下容易突然抽离或反叛。',11:'行动力受情绪影响大，动力时高时低，适合把目标和感受结合起来做事。'};
+  const URANUS_I = {0:'这代人共有的觉醒主题落在开创与自我表达上，个人层面看落宫，最能感受到「打破常规、抢先出发」的冲动。',1:'世代对「安全与价值观」发起革新，个人层面看落宫，容易在钱、物质或自我价值上有突然的转折。',2:'世代重塑沟通与资讯方式，个人层面看落宫，那个领域的想法和表达方式最容易忽然「换频道」。',3:'世代重新定义家庭与归属感的形式，个人层面看落宫，安全感的来源在那里容易被打破重建。',4:'世代对「自我表现与权威」提出质疑，个人层面看落宫，那个领域最容易出现出人意料的自我突破。',5:'世代改写工作与健康的常规方式，个人层面看落宫，习惯与例行事务在那里最容易被打乱重组。',6:'世代重新协商关系与公平的定义，个人层面看落宫，那个领域的合作方式最容易被颠覆更新。',7:'世代对权力与深层控制发起变革，个人层面看落宫，那里最容易经历突然的转化与重生式转折。',8:'世代拓宽信念与世界观的边界，个人层面看落宫，那个领域最容易被新观念、新旅程忽然打开。',9:'世代冲击既有的权威与结构，个人层面看落宫，那个领域最容易经历体制性的突破与重建。',10:'天王星回到本位，这代人对自由、群体与未来格外敏感，个人特质会更直接体现在落宫领域。',11:'世代把灵性与集体潜意识议题推上台面，个人层面看落宫，那个领域最容易出现顿悟式的转折。'};
+  const NEPTUNE_I = {0:'这代人共享的理想化浪潮落在个人冲劲与自我形象上，个人层面看落宫，那里容易理想化也容易感到迷雾重重。',1:'世代对物质与价值产生集体性的憧憬或幻灭，个人层面看落宫，钱财、资源相关的判断在那里最容易失焦。',2:'世代的信息环境真假交织，个人层面看落宫，沟通与学习在那个领域容易理想化，需多一分查证。',3:'世代对「家」与情感归属有集体乡愁式的向往，个人层面看落宫，情感依附在那里容易分不清现实与想象。',4:'世代的舞台感被放大，个人层面看落宫，自我表现在那个领域容易被浪漫化或过度理想化。',5:'世代对健康、服务与日常秩序有理想化或混乱交织的经验，个人层面看落宫，例行事务在那里最容易失序又渴望救赎。',6:'世代对关系与美的想象被拉高，个人层面看落宫，人际期待在那个领域容易脱离现实、需要落地检验。',7:'世代把亲密与失控的边界模糊化，个人层面看落宫，深层情感和信任议题在那里最容易理想化。',8:'世代的信仰与远方充满浪漫想象，个人层面看落宫，人生方向感在那个领域最容易亦真亦幻。',9:'世代对权威与成就的定义变得柔性、去中心化，个人层面看落宫，事业与责任在那里最容易理想主义化。',10:'世代把自由与集体愿景理想化，个人层面看落宫，人际与理想在那个领域容易既浪漫又飘忽。',11:'海王星回到本位，这代人对灵性、艺术与共情格外敏锐，个人特质会更直接体现在落宫领域，也更需要现实感的锚点。'};
+  const PLUTO_I = {0:'这代人的集体蜕变主题与「争取自我主导权」有关，个人层面看落宫，那个领域最容易经历深刻的掌控与重生议题。',1:'世代经历价值观与资源分配的深层洗牌，个人层面看落宫，物质与自我价值在那里最容易被彻底重塑。',2:'世代的信息与思想被颠覆式重构，个人层面看落宫，认知与表达方式在那个领域最容易经历脱胎换骨。',3:'世代对家庭结构与集体安全感有深层次冲击，个人层面看落宫，情感根基在那里最容易被连根拔起再重建。',4:'世代重新定义权威与被看见的方式，个人层面看落宫，自我意志在那个领域最容易经历极端的掌控或失控体验。',5:'世代对劳动、身体与秩序的关系发生结构性转变，个人层面看落宫，日常与健康议题在那里最容易被迫彻底调整。',6:'世代重新协商权力在关系中的分配，个人层面看落宫，一对一关系在那个领域最容易涉及深层的控制与臣服议题。',7:'冥王星回到本位，这代人对生死、性与深层心理格外敏感，个人特质会更直接体现在落宫领域，转化的力量也最强。',8:'世代的信念系统经历彻底的解构与重建，个人层面看落宫，人生哲学与远方在那里最容易被连根重塑。',9:'世代目睹权威结构的崩解与重组，个人层面看落宫，事业与社会地位在那个领域最容易经历深度洗牌。',10:'世代推动集体与体制的彻底变革，个人层面看落宫，人际网络与理想在那里最容易牵涉权力更迭。',11:'世代的集体潜意识经历深层清洗，个人层面看落宫，隐秘与灵性议题在那个领域最容易触发深刻蜕变。'};
 
   function wNorm(deg){ deg%=360; if(deg<0)deg+=360; return deg; }
   function wSignIdx(lon){ return Math.floor(wNorm(lon)/30); }
@@ -5915,6 +5925,7 @@
     const sun = r.planets.sun, moon = r.planets.moon;
     const mercury = r.planets.mercury, venus = r.planets.venus, mars = r.planets.mars;
     const jupiter = r.planets.jupiter, saturn = r.planets.saturn;
+    const uranus = r.planets.uranus, neptune = r.planets.neptune, pluto = r.planets.pluto;
     const { year, month, day, hour, minute, lat, lng, tz } = r.input;
 
     const houseTheme = {1:'自我与开创',2:'金钱与价值',3:'学习与沟通',4:'家庭与根基',5:'恋爱与创造',6:'工作与健康',7:'伴侣与合作',8:'共享与转化',9:'信念与远行',10:'事业与声望',11:'社群与愿景',12:'潜意识与休整'};
@@ -5933,14 +5944,30 @@
       11:{tag:'共感梦想家', chat:'柔软、易共情'}
     };
     const elemTone = {
-      火:'热情、敢冲，适合把冲劲切成可完成的小目标。',
-      土:'务实能守，适合长期积累，小心别太固执。',
-      风:'脑子活、善沟通，注意想法多、落地少。',
-      水:'感受力强，宜管好情绪边界，别过度卷入。'
+      火:'热情、敢冲，适合把冲劲切成可完成的小目标，避免虎头蛇尾。',
+      土:'务实能守，适合长期积累与落地执行，小心别太固执、错过变化的信号。',
+      风:'脑子活、善沟通，长于连接信息与人脉，注意想法多、落地少。',
+      水:'感受力强，共情能力突出，宜管好情绪边界，别过度卷入他人的课题。'
     };
+    const QUAL_DESC = {
+      基本:'开创力强，擅长起头、抢占先机，是团队里第一个举手的人，但容易虎头蛇尾，需要有人或制度帮忙盯后半程。',
+      固定:'稳定持久，认定的事很难被动摇，擅长把事情做深做透，但也要提防过度固执、拒绝调整。',
+      变动:'适应力强，善于随机应变、切换赛道，缺点是容易见异思迁，缺乏把事情收尾的耐心。'
+    };
+    const ELEM_MISSING = {
+      火:'盘中火象缺席：行动力不是本能反应，需要刻意给自己设短期截止日来「点火」，否则容易一直停在计划阶段。',
+      土:'盘中土象缺席：落地执行是相对弱项，想法常常很好但难持续推进，建议借助清单、伙伴或制度把创意变成现实。',
+      风:'盘中风象缺席：抽离、客观分析的视角较弱，遇事容易先讲情绪，可练习「先说事实、再说感受」的表达顺序。',
+      水:'盘中水象缺席：对情绪信号不够敏感，容易忽略自己和他人的感受，建议刻意练习共情与倾听。'
+    };
+
     let topElem = '火', topN = -1;
     Object.keys(r.elemCount).forEach(e => { if (r.elemCount[e] > topN) { topN = r.elemCount[e]; topElem = e; } });
+    let topQual = '基本', topQn = -1;
+    Object.keys(r.qualCount).forEach(q => { if (r.qualCount[q] > topQn) { topQn = r.qualCount[q]; topQual = q; } });
     const fireN = r.elemCount['火']||0, waterN = r.elemCount['水']||0, airN = r.elemCount['风']||0, earthN = r.elemCount['土']||0;
+    const et = Object.values(r.elemCount).reduce((a,b)=>a+b,0)||1;
+    const qt = Object.values(r.qualCount).reduce((a,b)=>a+b,0)||1;
     const softN = r.aspects.filter(a => a.name==='拱相'||a.name==='六分相'||a.name==='合相').length;
     const hardN = r.aspects.filter(a => a.name==='刑相'||a.name==='对分相').length;
 
@@ -5971,8 +5998,9 @@
     const mjStyle = fireN>=3?'豪放搏进型':earthN>=3?'稳健防守型':airN>=3?'观察算牌型':waterN>=3?'凭感觉流型':'均衡型';
 
     const sp = signPersona[sun.signIdx], mp = signPersona[moon.signIdx];
-    const heroTitle = sp.tag + ' · ' + sun.sign + (r.asc ? '上升' + r.asc.sign : '');
-    const heroSub = moon.sign + '月亮托底' + (sun.elem===moon.elem ? '，内外较同调' : '，表里有反差') + ' · 主导' + topElem + '象';
+    const ap = r.asc ? signPersona[r.asc.signIdx] : null;
+    const heroTitle = sp.tag + ' · ' + signOf(sun) + (r.asc ? '上升' + signOf(r.asc) : '');
+    const heroSub = signOf(moon) + '月亮托底' + (sun.elem===moon.elem ? '，内外较同调' : '，表里有反差') + ' · 主导' + topElem + '象';
 
     function acc(id, title, body, open) {
       return '<div class="w-acc'+(open?' open':'')+'" id="'+id+'">' +
@@ -5980,51 +6008,143 @@
         '<div class="w-acc-bd">'+body+'</div></div>';
     }
     function lines(arr){ return arr.map(t => '<div class="w-line">'+t+'</div>').join(''); }
+    function hSign(offset){ return r.asc ? signName((r.asc.signIdx + offset) % 12) : null; }
 
-    // ① 核心人格
-    const personaBody = lines([
-      '<span class="w-chip">☉ 太阳</span> '+sun.sign+' '+sun.deg+(sun.house?' · '+W_HOUSE_CN[sun.house-1]:''),
+    // 一、核心三轴 · 太阳·月亮·上升
+    const axisBody = lines([
+      '<span class="w-chip">☉ 太阳</span> '+signOf(sun)+' '+sun.deg+(sun.house?' · '+W_HOUSE_CN[sun.house-1]:''),
       '→ '+SUN_I[sun.signIdx],
-      '<span class="w-chip">☽ 月亮</span> '+moon.sign+' '+moon.deg+(moon.house?' · '+W_HOUSE_CN[moon.house-1]:''),
+      '<span class="w-chip">☽ 月亮</span> '+signOf(moon)+' '+moon.deg+(moon.house?' · '+W_HOUSE_CN[moon.house-1]:''),
       '→ '+MOON_I[moon.signIdx],
-      r.asc ? ('<span class="w-chip">↑ 上升</span> '+r.asc.sign+' '+r.asc.deg+'<br>→ '+ASC_I[r.asc.signIdx]) : '↑ 上升：填写出生地后可计算',
-      '社交沟通：'+sp.chat+'；内在需求偏向「'+mp.tag+'」。',
-      '脾气起伏：'+temperBar,
-      sun.signIdx!==moon.signIdx ? '日月不同座：外人看到的你与独处时的你可能反差明显。' : '日月气质接近：表里较一致，决策也更干脆。'
+      r.asc ? ('<span class="w-chip">↑ 上升</span> '+signOf(r.asc)+' '+r.asc.deg+'<br>→ '+ASC_I[r.asc.signIdx]) : '↑ 上升：填写出生地后可计算',
+      sun.signIdx!==moon.signIdx ? '太阳与月亮不同星座：外人眼中的你，和独处时的你可能有明显反差，这是正常的「表里两面」，不是矛盾。' : '太阳与月亮同星座：表里高度一致，情绪与目标常同步，决策也更干脆利落。',
+      (r.asc && r.asc.signIdx===sun.signIdx) ? '上升与太阳同星座：第一印象就是本色出演，辨识度高。' : ((r.asc && r.asc.signIdx===moon.signIdx) ? '上升与月亮同星座：初次见面就能感受到你的情绪底色，亲和力强。' : '')
+    ].filter(Boolean));
+
+    // 二、元素与模式 · 四象结构解读
+    const elemLines = ['火','土','风','水'].map(e => {
+      const n = r.elemCount[e]||0, pct = Math.round(n/et*100);
+      return e+'象 '+n+'（'+pct+'%）'+(e===topElem?'　★主导':'')+' — '+elemTone[e];
+    });
+    const qualLines = ['基本','固定','变动'].map(q => {
+      const n = r.qualCount[q]||0, pct = Math.round(n/qt*100);
+      return q+' '+n+'（'+pct+'%）'+(q===topQual?'　★主导':'')+' — '+QUAL_DESC[q];
+    });
+    const missingElem = ['火','土','风','水'].find(e => (r.elemCount[e]||0)===0);
+    const elemBody =
+      '<div class="w-sub">四象力量分布</div>' + lines(elemLines) +
+      '<div class="w-sub">三种行动模式</div>' + lines(qualLines) +
+      lines(['脾气起伏：'+temperBar, missingElem ? ELEM_MISSING[missingElem] : '四象皆有分布：性格弹性较好，不容易在某一类课题上长期卡住。'].filter(Boolean));
+
+    // 三、命运主线 · 人生课题与总基调
+    const coreLine = '人生底层逻辑：用「'+sp.tag+'」去争取想要的东西，用「'+mp.tag+'」的方式安顿内心'+(ap?'，再借「'+ap.tag+'」的姿态走向世界。':'。');
+    const pathLine = hardN>softN
+      ? '整体阻力：挑战相位偏多（'+hardN+'组），人生更像「闯关升级」，每个阶段都有明确关卡，但闯过去往往就是真本事。'
+      : (softN>hardN
+        ? '整体阻力：和谐相位偏多（'+softN+'组），人生更像「顺风张帆」，天赋帮你省了不少力气，风险是容易因为太顺而怠惰、不逼自己成长。'
+        : '整体阻力：软硬相位大致均衡，人生有阻力也有助力，节奏相对平稳，进退全看自己怎么选。');
+    const syncLine = sun.elem===moon.elem
+      ? '太阳与月亮同为'+sun.elem+'象：理智想要的和内心需要的方向一致，一旦下定决心就能迅速转化为行动。'
+      : '太阳（'+sun.elem+'象）与月亮（'+moon.elem+'象）分属不同元素：理智想要的和内心需要的不完全同步，先说服自己的情感面，事情才走得远、走得稳。';
+    const fateBody = lines([coreLine, pathLine, syncLine]);
+
+    // 四、事业与志业 · 天赋定位与发展路径
+    const mc10 = hSign(9);
+    const careerBody = lines([
+      '太阳落在「'+(sun.house?houseTheme[sun.house]:'（需出生地）')+'」相关领域时，最容易感到「这就是我该做的事」。',
+      mc10 ? '事业宫（第10宫）落在'+mc10+'：这是外界眼中你职业形象的底色，找工作、立人设时可以参考。' : '补全出生地后，可看到事业宫（第10宫）星座，让职业形象定位更精准。',
+      '土星在'+signOf(saturn)+(saturn.house?'落第'+saturn.house+'宫':'')+'：现实会在这个领域反复考验你，熬过去往往就是你中年后最扎实的专业壁垒。',
+      '木星在'+signOf(jupiter)+(jupiter.house?'落第'+jupiter.house+'宫':'')+'：这是学习、贵人与机会容易靠近的方向，值得主动伸手争取。',
+      '实操建议：把太阳特质当职业标签对外介绍，把土星领域当长期深耕的根据地，把木星领域当找机会、找老师的方向。'
     ]);
 
-    // ② 人生四象：命运→事业→财→婚（因果链）
-    const fate = [
-      '人生主轴是太阳'+sun.sign+'，情感底色是月亮'+moon.sign+(r.asc?'，出门见人的「面具」是上升'+r.asc.sign:'')+'。',
-      '主导元素'+topElem+'象：'+elemTone[topElem],
-      hardN ? '盘中挑战相位较明显，课题会反复出现，但也常逼出真正本事。' : '挑战相位不多，人生阻力相对缓和，关键在于主动开拓。',
-      softN ? '和谐相位提供天赋顺风，用在事业与关系上更易出成绩。' : '和谐相位不算多，成长更多来自自己一步步搭建。'
-    ];
-    const career = [
-      '太阳落在「'+(sun.house?houseTheme[sun.house]:'（需坐标）')+'」相关领域时，最容易感到「这就是我」。',
-      '土星在'+saturn.sign+(saturn.house?'第'+saturn.house+'宫':'')+'：责任与考验集中处，往往也是晚年最扎实的成就区。',
-      '木星在'+jupiter.sign+(jupiter.house?'第'+jupiter.house+'宫':'')+'：扩展、学习与贵人运的方向。',
-      '建议：用太阳特质当职业标签，用土星领域做长期投入，用木星领域找机会与老师。'
-    ];
-    const money = [
-      '金星在'+venus.sign+'：你真正愿意为之付钱、也容易因此被钱青睐的价值偏好。',
-      venus.house ? '金星宫位提示财与情感课题交织在「'+houseTheme[venus.house]+'」。' : '补全出生地后，可进一步看财帛宫。',
-      (jupiter.house===2||jupiter.house===8) ? '木星触及财相关宫，扩张财运的窗口值得抓，但忌赌性太重。' : '财运节奏偏平稳积累型，靠技能与信用比靠运气更稳。',
-      earthN>=3 ? '土象偏多：更会守财、重实际回报。' : '注意「会赚」与「会留」是否平衡。'
-    ];
-    const love = [
-      '月亮决定你要怎样的安全感：'+MOON_I[moon.signIdx],
-      '金星决定你怎么示爱、被什么吸引；火星在'+mars.sign+'，决定你追求与争吵时的动作。',
-      r.asc ? '上升'+r.asc.sign+'影响你在关系里的第一印象。' : '',
-      waterN>=3 ? '水象偏多：易共情，也需防过度牺牲。' : (fireN>=3 ? '火象偏多：热情主动，记得给关系留耐心。' : '感情节奏宜先安月亮、再展金星。')
-    ].filter(Boolean);
-    const lifeBody =
-      '<div class="w-sub">① 命运主线</div>'+lines(fate)+
-      '<div class="w-sub">② 事业（命运的外化）</div>'+lines(career)+
-      '<div class="w-sub">③ 财运（资源怎么流）</div>'+lines(money)+
-      '<div class="w-sub">④ 婚姻感情（能量怎么交换）</div>'+lines(love);
+    // 五、财富与资源 · 价值取向与聚财方式
+    const h2 = hSign(1), h8 = hSign(7);
+    const moneyBody = lines([
+      '金星在'+signOf(venus)+'：这是你真正愿意为之付钱、也容易因此被钱吸引的价值偏好。',
+      h2 ? '财帛宫（第2宫）落在'+h2+'：反映你赚钱与花钱的本能风格。' : '补全出生地后，可看到财帛宫（第2宫）星座。',
+      h8 ? '第8宫落在'+h8+'：涉及合作资金、债务与他人资源，是「共同财务」课题的所在。' : '',
+      (jupiter.house===2||jupiter.house===8) ? '木星恰好触及财务相关宫位：扩张财运的窗口值得抓，但忌贪多嚼不烂、赌性过重。' : '财运节奏偏平稳积累型，靠技能与信用比靠运气更稳。',
+      earthN>=3 ? '土象力量偏强：比起追逐高回报，你更倾向把钱换成看得见、摸得着的资产，守成能力强。' : (fireN>=3 && earthN===0 ? '火象强而土象缺席：赚钱冲劲十足，但落袋为安的耐心不够，宜找个务实的搭档或工具帮忙管钱。' : '')
+    ].filter(Boolean));
 
-    // ③ 日常体感：幸福 + 麻将
+    // 六、亲密关系 · 相处模式
+    const h7 = hSign(6);
+    const loveBody = lines([
+      '情感安全感的根基已由月亮'+signOf(moon)+'决定（详见「一、核心三轴」），这里聚焦你在关系里的实际互动方式。',
+      h7 ? '伴侣宫（第7宫）落在'+h7+'：暗示你容易被什么样的人吸引，也容易在关系里扮演什么角色。' : '补全出生地后，可看到伴侣宫（第7宫）星座，进一步定位择偶倾向。',
+      r.asc ? '上升'+signOf(r.asc)+'也会影响你留给对方的第一印象（详见「一」）。' : '',
+      '火星'+signOf(mars)+'决定你追求与争吵时的动作，完整解读见「九、行动张力」。',
+      waterN>=3 ? '水象偏多：容易共情、也容易在关系中过度牺牲，宜练习设定情感边界。' : (fireN>=3 ? '火象偏多：主动直接、追求效率，记得给关系留一点耐心和缓冲。' : (earthN>=3 ? '土象偏多：重视承诺与实际付出，表达爱的方式偏行动派而非甜言蜜语。' : '感情节奏建议先安顿好月亮的安全感，再展现金星的魅力。'))
+    ].filter(Boolean));
+
+    // 七、沟通思维 · 学习与表达风格
+    const h3 = hSign(2);
+    const mercuryBody = lines([
+      '水星在'+signOf(mercury)+'：'+MERCURY_I[mercury.signIdx],
+      mercury.house ? '水星落第'+mercury.house+'宫：沟通与学习的课题会集中在「'+houseTheme[mercury.house]+'」相关的场合。' : '',
+      h3 ? '沟通宫（第3宫）落在'+h3+'：这是你日常交流、社交圈氛围的底色。' : '补全出生地后，可看到沟通宫（第3宫）星座。'
+    ].filter(Boolean));
+
+    // 八、魅力吸引 · 审美偏好与情感连结
+    const h5 = hSign(4);
+    const venusBody = lines([
+      '金星在'+signOf(venus)+'：'+VENUS_I[venus.signIdx],
+      venus.house ? '金星落第'+venus.house+'宫：审美与喜好会集中体现在「'+houseTheme[venus.house]+'」相关的领域。' : '',
+      h5 ? '第5宫（恋爱/创造/娱乐）落在'+h5+'：这是你享受生活、放松身心的偏好方式。' : ''
+    ].filter(Boolean));
+
+    // 九、行动张力 · 欲望驱动与冲突反应
+    const marsBody = lines([
+      '火星在'+signOf(mars)+'：'+MARS_I[mars.signIdx],
+      mars.house ? '火星落第'+mars.house+'宫：你的行动力和竞争心，会最先在「'+houseTheme[mars.house]+'」相关领域被点燃。' : '',
+      '把水星（怎么想）、金星（喜欢什么）、火星（怎么做）连起来看，就是你从想法到行动的完整链路。'
+    ].filter(Boolean));
+
+    // 十、相位网络 · 天赋顺风与功课清单
+    const nm = Object.fromEntries(W_PLANETS.map(x => [x.key, x.cn]));
+    const aspectMeaning = {
+      '合相': '能量融合、同一主题被放大，天赋与执念常一体两面。',
+      '六分相': '轻松的机会与助力，主动伸手时更易接通。',
+      '刑相': '摩擦与压力，逼你做选择、练能力，短期不舒服、长期长本事。',
+      '拱相': '自然流畅的才能通道，做起来相对顺，也容易吃老本。',
+      '对分相': '拉锯与平衡题，人生常在两极之间找中线。'
+    };
+    const topAsp = r.aspects.slice(0, 6);
+    let aspectBody = '';
+    if (!topAsp.length) {
+      aspectBody = '<div class="w-line">本盘主要相位较少或较宽，性格弹性大，外在事件驱动会更明显。</div>';
+    } else {
+      aspectBody = '<div class="w-sub">最值得盯的相位（按紧密度）</div>';
+      topAsp.forEach(a => {
+        aspectBody += '<div class="w-line"><span class="w-chip">'+(nm[a.p1]||a.p1)+' '+a.name+' '+(nm[a.p2]||a.p2)+'</span> 容许 '+a.orb.toFixed(1)+'°</div>';
+        aspectBody += '<div class="w-sub">'+(aspectMeaning[a.name]||'')+' 这两颗星的主题会反复在生活里「绑在一起」出现。</div>';
+      });
+      aspectBody += '<div class="w-line">读法提示：合/拱/六分偏顺风；刑/对偏功课。顺风要主动用，功课要拆小步做，不要硬刚。</div>';
+    }
+
+    // 十一、人生舞台 · 十二宫生活地图
+    let houseBody = '';
+    if (r.asc) {
+      houseBody = '<div class="w-sub">整宫制：上升'+signOf(r.asc)+'为第1宫，十二个人生舞台一览</div>';
+      for (let h=1; h<=12; h++) {
+        houseBody += '<div class="w-line"><span class="w-chip">第'+h+'宫</span> '+hSign(h-1)+' · '+houseTheme[h]+'</div>';
+      }
+      houseBody += '<div class="w-sub">重点参考：1/10宫看形象与事业方向，7宫看一对一关系，2/8宫看钱与深层联结，5宫看恋爱与创造欲。</div>';
+    } else {
+      houseBody = '<div class="w-line">填写出生地经纬度后，可生成上升与十二宫生活舞台解读。</div>';
+    }
+
+    // 十二、世代印记与成长功课 · 外行星与土星整合
+    const growthBody = lines([
+      '土星在'+signOf(saturn)+(saturn.house?'落第'+saturn.house+'宫':'')+'：这是你最容易感到「压力大、成长也最扎实」的领域，心理功课多围绕「够不够格、值不值得」展开，扎实面对比逃避更省力。',
+      '天王星在'+signOf(uranus)+(uranus.house?'落第'+uranus.house+'宫':'')+'：'+URANUS_I[uranus.signIdx],
+      '海王星在'+signOf(neptune)+(neptune.house?'落第'+neptune.house+'宫':'')+'：'+NEPTUNE_I[neptune.signIdx],
+      '冥王星在'+signOf(pluto)+(pluto.house?'落第'+pluto.house+'宫':'')+'：'+PLUTO_I[pluto.signIdx],
+      '提示：天王/海王/冥王星移动极慢，星座本身是「整代人」共有的印记，真正个人化的是它们所落的宫位——那才是这份世代议题在你身上展开的具体舞台。'
+    ]);
+
+    // 附：日常体感 · 幸福感与手气（趣味参考，非严肃分析）
     const vibeBody = lines([
       '幸福倾向：'+happy+' / 100　'+happyBar+'　（'+happyLevel+'）',
       '算法参考：和谐相位、日月是否同调、水象感受力与土象落地是否兼顾。',
@@ -6033,8 +6153,7 @@
       '这两项都是盘面「体感倾向」，不是宿命——睡眠、关系与牌桌选择影响更大。'
     ]);
 
-    // ④ 专业盘面
-    const nm = Object.fromEntries(W_PLANETS.map(x => [x.key, x.cn]));
+    // 附：专业盘面 · 行星·宫位·数据
     let pro = '<div class="w-sub">出生数据</div>'+lines([
       year+'-'+String(month).padStart(2,'0')+'-'+String(day).padStart(2,'0')+' '+String(hour).padStart(2,'0')+':'+String(minute).padStart(2,'0'),
       '地点：'+(lat!=null?lat.toFixed(4)+'°, '+lng.toFixed(4)+'°':'未填')+'　时区：'+esc(tz||'默认 UTC+8'),
@@ -6043,88 +6162,38 @@
     pro += '<div class="w-sub">行星</div>';
     W_PLANETS.forEach(meta => {
       const x = r.planets[meta.key];
-      pro += '<div class="w-line">'+x.glyph+' '+x.cn+'：'+x.sign+' '+x.deg+(x.house?' · '+W_HOUSE_CN[x.house-1]:'')+'</div>';
+      pro += '<div class="w-line">'+x.glyph+' '+x.cn+'：'+signOf(x)+' '+x.deg+(x.house?' · '+W_HOUSE_CN[x.house-1]:'')+'</div>';
     });
     if (r.asc) {
       pro += '<div class="w-sub">十二宫（整宫制）</div>';
-      for (let i=0;i<12;i++) pro += '<div class="w-line">'+W_HOUSE_CN[i]+'：'+W_SIGN[(r.asc.signIdx+i)%12]+'</div>';
+      for (let i=0;i<12;i++) pro += '<div class="w-line">'+W_HOUSE_CN[i]+'：'+hSign(i)+'</div>';
     }
     pro += '<div class="w-sub">主要相位</div>';
     if (!r.aspects.length) pro += '<div class="w-line">无明显主要相位</div>';
     r.aspects.slice(0,16).forEach(a => {
       pro += '<div class="w-line">'+(nm[a.p1]||a.p1)+' '+a.name+' '+(nm[a.p2]||a.p2)+'（'+a.orb.toFixed(1)+'°）</div>';
     });
-    const et = Object.values(r.elemCount).reduce((a,b)=>a+b,0)||1;
-    const qt = Object.values(r.qualCount).reduce((a,b)=>a+b,0)||1;
     pro += '<div class="w-sub">元素 / 模式</div>';
     ['火','土','风','水'].forEach(e => { pro += '<div class="w-line">'+e+'象 '+(r.elemCount[e]||0)+'（'+Math.round((r.elemCount[e]||0)/et*100)+'%）</div>'; });
     ['基本','固定','变动'].forEach(q => { pro += '<div class="w-line">'+q+' '+(r.qualCount[q]||0)+'（'+Math.round((r.qualCount[q]||0)/qt*100)+'%）</div>'; });
 
-    // —— 相位意义（挑最紧的几组讲清楚）——
-    const aspectMeaning = {
-      '合相': '能量融合、同一主题被放大，天赋与执念常一体两面。',
-      '六分相': '轻松的机会与助力，主动伸手时更易接通。',
-      '刑相': '摩擦与压力，逼你做选择、练能力，短期不舒服长期长肌肉。',
-      '拱相': '自然流畅的才能通道，做起来相对顺、也容易吃老本。',
-      '对分相': '拉锯与平衡题，人生常在两极之间找中线。'
-    };
-    const nm2 = Object.fromEntries(W_PLANETS.map(x => [x.key, x.cn]));
-    const topAsp = r.aspects.slice(0, 6);
-    let aspectBody = '';
-    if (!topAsp.length) {
-      aspectBody = '<div class="w-line">本盘主要相位较少或较宽，性格弹性大，外在事件驱动会更明显。</div>';
-    } else {
-      aspectBody = '<div class="w-sub">最值得盯的相位（按紧密度）</div>';
-      topAsp.forEach(a => {
-        aspectBody += '<div class="w-line"><span class="w-chip">'+(nm2[a.p1]||a.p1)+' '+a.name+' '+(nm2[a.p2]||a.p2)+'</span> 容许 '+a.orb.toFixed(1)+'°</div>';
-        aspectBody += '<div class="w-sub">'+(aspectMeaning[a.name]||'')+' 这两颗星的主题会反复在生活里「绑在一起」出现。</div>';
-      });
-      aspectBody += '<div class="w-line">读法提示：合/拱/六分偏顺风；刑/对偏功课。顺风要主动用，功课要拆小步做，不要硬刚。</div>';
-    }
-
-    // —— 天赋与挑战 ——
-    const giftBody = lines([
-      softN ? '盘面和谐相位偏多：某些事你「不用特别用力」也能做像样，适合做成招牌技能。' : '和谐相位不算堆叠：成功更依赖策略与重复练习，反而扎实。',
-      hardN ? '挑战相位存在：压力来时先命名情绪，再选一个最小可行动作——这是把刑对炼成能力的方法。' : '硬相位压力不大：注意别因为太顺而拖延关键决策。',
-      '火象'+fireN+' · 土象'+earthN+' · 风象'+airN+' · 水象'+waterN+'：'+elemTone[topElem],
-      saturn.house ? '土星落在「'+houseTheme[saturn.house]+'」：这里最熬人，也最能变成你的权威感来源。' : '土星领域需结合宫位看（建议补出生地）。',
-      jupiter.house ? '木星落在「'+houseTheme[jupiter.house]+'」：这里适合学习、旅行、合作与碰运气。' : ''
-    ].filter(Boolean));
-
-    // —— 十二宫生活提示（有上升时）——
-    let houseBody = '';
-    if (r.asc) {
-      houseBody = '<div class="w-sub">整宫制：上升'+r.asc.sign+'为第1宫，以下为人生舞台速览</div>';
-      const focus = [1, 2, 7, 10, 5, 8];
-      focus.forEach(h => {
-        const si = (r.asc.signIdx + h - 1) % 12;
-        houseBody += '<div class="w-line"><span class="w-chip">第'+h+'宫</span> '+W_SIGN[si]+' · '+houseTheme[h]+'</div>';
-      });
-      houseBody += '<div class="w-sub">第1/10宫看形象与事业方向，第7宫看一对一关系，第2/8宫看钱与深层联结，第5宫看恋爱与创造欲。</div>';
-    } else {
-      houseBody = '<div class="w-line">填写出生地经纬度后，可生成上升与十二宫生活舞台解读。</div>';
-    }
-
-    // —— 水星沟通 / 金星喜好 短评 ——
-    const styleBody = lines([
-      '水星在'+r.planets.mercury.sign+'：思考与表达节奏偏此星座——决定你如何学习、争辩与讲故事。',
-      '金星在'+venus.sign+'：审美与喜好清单；也影响你对「值不值得」的第一判断。',
-      '火星在'+mars.sign+'：行动按钮；压力下是冲、还是撤，多半写在这里。',
-      mercury.house ? '水星宫位：沟通课题落在「'+houseTheme[mercury.house]+'」。' : '',
-      '把三颗「日常行星」连起来看：你怎么想（水星）、喜欢什么（金星）、怎么动手（火星）。'
-    ].filter(Boolean));
-
     return (
       '<div class="w-hero"><div class="w-hero-title">'+heroTitle+'</div><div class="w-hero-sub">'+heroSub+'</div></div>' +
-      acc('wAccPersona', '一、你是谁 · 核心人格', personaBody, true) +
-      acc('wAccLife', '二、你往哪走 · 命运·事业·财运·感情', lifeBody, true) +
-      acc('wAccAspect', '三、相位在说什么 · 关系与功课', aspectBody, true) +
-      acc('wAccGift', '四、天赋与挑战 · 怎么用盘', giftBody, false) +
-      acc('wAccStyle', '五、日常风格 · 思考·喜好·行动', styleBody, false) +
-      acc('wAccHouse', '六、人生舞台 · 重点宫位', houseBody, false) +
-      acc('wAccVibe', '七、日常体感 · 幸福与手气', vibeBody, false) +
-      acc('wAccPro', '八、专业盘面 · 行星·宫位·数据', pro, false) +
-      '<div class="w-note">阅读顺序：人格 → 人生流向 → 相位功课 → 其余按兴趣展开。点标题可收起/展开。补全出生时间与地点，上升与宫位会更准。</div>'
+      acc('wAcc01', '一、核心三轴 · 太阳·月亮·上升', axisBody, false) +
+      acc('wAcc02', '二、元素与模式 · 四象结构解读', elemBody, false) +
+      acc('wAcc03', '三、命运主线 · 人生课题与总基调', fateBody, false) +
+      acc('wAcc04', '四、事业与志业 · 天赋定位与发展路径', careerBody, false) +
+      acc('wAcc05', '五、财富与资源 · 价值取向与聚财方式', moneyBody, false) +
+      acc('wAcc06', '六、亲密关系 · 爱的语言与相处模式', loveBody, false) +
+      acc('wAcc07', '七、沟通思维 · 学习与表达风格', mercuryBody, false) +
+      acc('wAcc08', '八、魅力吸引 · 审美偏好与情感连结', venusBody, false) +
+      acc('wAcc09', '九、行动张力 · 欲望驱动与冲突反应', marsBody, false) +
+      acc('wAcc10', '十、相位网络 · 天赋顺风与功课清单', aspectBody, false) +
+      acc('wAcc11', '十一、人生舞台 · 十二宫生活地图', houseBody, false) +
+      acc('wAcc12', '十二、世代印记与成长功课 · 外行星与土星整合', growthBody, false) +
+      acc('wAccVibe', '附一、日常体感 · 幸福感与手气', vibeBody, false) +
+      acc('wAccPro', '附二、专业盘面 · 行星·宫位·数据', pro, false) +
+      '<div class="w-note">阅读顺序建议：一 → 三 → 四~九（按兴趣）→ 十~十二。全部默认收起，点标题展开/收起。补全出生时间与地点，上升与宫位解读会更准确。</div>'
     );
   }
 
