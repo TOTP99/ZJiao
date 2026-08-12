@@ -2,7 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#c9a227">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
 <title>御猫灵局 · 掷筊</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
@@ -43,7 +48,7 @@
       radial-gradient(ellipse at 85% 70%, rgba(160,120,60,0.14) 0%, transparent 40%),
       linear-gradient(165deg, #faf4e4 0%, #ebe0c0 55%, #e4d6b0 100%);
     background-blend-mode: overlay, normal, normal, normal, normal;
-    background-attachment: fixed;
+    /* 移动端不用 background-attachment: fixed —— 部分 WebKit 版本下滚动时会有明显掉帧/闪烁 */
     font-family: 'Noto Serif SC', 'Songti SC', serif;
     color: var(--gold-dark);
     display: flex;
@@ -51,8 +56,11 @@
     align-items: center;
     justify-content: flex-start;
     padding: 28px 16px 24px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom)); /* 全面屏底部手势条留白 */
     overflow-x: hidden;
     position: relative;
+    -webkit-tap-highlight-color: transparent; /* 去掉安卓/iOS 点击时的灰色高亮闪烁，交互更干净顺滑 */
+    touch-action: manipulation; /* 禁用双击缩放手势，避免连续点击卦筊/按钮时误触发页面缩放，仍保留双指缩放无障碍功能 */
   }
 
   .box-wrap {
@@ -174,14 +182,13 @@
     max-width: 420px;
     margin: 0 auto 12px;
   }
-  .question-wrap .question-box { max-width: none; margin: 0; }
+  .question-wrap .question-box { max-width: none; margin: 0; border-radius: 0; padding-top: 2px; }
   .question-wrap .selected-line {
     max-width: none;
     padding: 6px 14px 2px;
     background: rgba(255,255,255,0.55);
     border-radius: 6px 6px 0 0;
   }
-  .question-wrap .question-box { border-radius: 0; padding-top: 2px; }
 
   .question-cta {
     text-align: center;
@@ -208,6 +215,7 @@
     text-align: left;
     max-height: 260px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     opacity: 0;
     transform: translateY(-8px) scale(0.98);
@@ -332,7 +340,7 @@
     outline: none;
     background: transparent;
     font-family: inherit;
-    font-size: 12.5px;
+    font-size: 16px; /* >=16px 防止 iOS Safari 聚焦时自动放大页面 */
     color: var(--gold-dark);
     padding: 3px 0;
   }
@@ -576,6 +584,7 @@
     line-height: 1.4;
     max-height: 52vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     padding: 2px 2px 5px;
   }
@@ -644,6 +653,7 @@
     text-align: left;
     max-height: 52vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     padding: 4px 2px;
   }
@@ -863,18 +873,27 @@
     background: none;
     border: none;
     color: var(--gold-deep);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
     cursor: pointer;
-    padding: 2px 4px;
+    padding: 0;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: -8px -8px -8px 0; /* 视觉不变，扩大实际点击热区 */
   }
   .history-close:hover { color: #6b4e10; }
 
   #historyList {
     max-height: 240px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-main) rgba(184,137,47,0.08);
   }
   #historyList::-webkit-scrollbar { width: 6px; }
   #historyList::-webkit-scrollbar-track { background: rgba(184,137,47,0.08); border-radius: 4px; }
@@ -882,7 +901,6 @@
     background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep));
     border-radius: 4px;
   }
-  #historyList { scrollbar-width: thin; scrollbar-color: var(--gold-main) rgba(184,137,47,0.08); }
 
   .history-item {
     font-size: 11px;
@@ -949,10 +967,16 @@
     background: none;
     border: none;
     color: var(--gold-deep);
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1;
     cursor: pointer;
-    padding: 2px 4px;
+    padding: 0;
+    min-width: 40px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: -8px -8px -8px 0; /* 视觉不变，扩大实际点击热区，方便单手拇指关闭 */
   }
   .mbti-close:hover { color: #6b4e10; }
 
@@ -994,14 +1018,16 @@
 
   .mbti-list {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     padding-right: 4px;
     flex: 1 1 auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-main) rgba(184,137,47,0.08);
   }
   .mbti-list::-webkit-scrollbar { width: 6px; }
   .mbti-list::-webkit-scrollbar-track { background: rgba(184,137,47,0.08); border-radius: 4px; }
   .mbti-list::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep)); border-radius: 4px; }
-  .mbti-list { scrollbar-width: thin; scrollbar-color: var(--gold-main) rgba(184,137,47,0.08); }
 
   .mbti-item {
     padding: 7px 0;
@@ -1082,6 +1108,7 @@
     gap: 10px;
     padding: 10px 2px 4px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     flex: 1 1 auto;
   }
@@ -1160,14 +1187,16 @@
   /* ---- 八字 & 神煞：表单沿用 .mbti-modal 系列外壳，此处仅补表单专属样式 ---- */
   .bazi-form {
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
     flex: 1 1 auto;
     padding-right: 4px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-main) rgba(184,137,47,0.08);
   }
   .bazi-form::-webkit-scrollbar { width: 6px; }
   .bazi-form::-webkit-scrollbar-track { background: rgba(184,137,47,0.08); border-radius: 4px; }
   .bazi-form::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold-bright), var(--gold-deep)); border-radius: 4px; }
-  .bazi-form { scrollbar-width: thin; scrollbar-color: var(--gold-main) rgba(184,137,47,0.08); }
 
   .bazi-row { margin-bottom: 10px; }
   .bazi-row label {
@@ -1184,13 +1213,13 @@
   .bazi-inline input[type="text"] {
     flex: 1;
     min-width: 0;
-    font-size: 12px;
+    font-size: 16px; /* >=16px 防止 iOS Safari 聚焦时自动放大页面 */
     font-family: inherit;
     color: var(--gold-dark);
     background: rgba(255,255,255,0.6);
     border: 1px solid var(--gold-pale);
     border-radius: 5px;
-    padding: 6px 7px;
+    padding: 5px 7px;
   }
   .bazi-inline input[type="number"]:focus,
   .bazi-inline input[type="text"]:focus {
