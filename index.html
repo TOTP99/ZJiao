@@ -25,6 +25,58 @@
   .fortune-hint{font-size:10px}
   .fortune-again{margin-top:7px}
 }
+/* 横屏：命运之轮结束后缩小退场，结论居中显示；竖屏不受影响 */
+@media (orientation:landscape){
+  .fortune-modal.landscape-result .fortune-layout{
+    gap:0;
+  }
+  .fortune-modal.landscape-result .fortune-stage{
+    width:0!important;
+    height:0!important;
+    flex:0 0 0!important;
+    opacity:0;
+    transform:scale(.12);
+    margin:0;
+    overflow:hidden;
+  }
+  .fortune-modal.landscape-result .fortune-zen{
+    opacity:0;
+    transform:scale(.82);
+    pointer-events:none;
+    transition:opacity .35s ease,transform .45s ease;
+  }
+  .fortune-modal.landscape-result .fortune-layout{
+    min-height:0;
+    height:0;
+    overflow:hidden;
+    margin:0;
+    transition:height .45s ease,opacity .35s ease;
+  }
+  .fortune-modal.landscape-result .fortune-title{
+    text-align:center;
+    margin-top:0;
+  }
+  .fortune-modal.landscape-result .fortune-result{
+    width:100%;
+    max-width:620px;
+    margin:0 auto;
+    text-align:center;
+    font-size:clamp(15px,2.2vw,22px);
+    line-height:1.8;
+    max-height:60vh;
+    padding:10px 18px 12px;
+    overflow:auto;
+    animation:landscapeFortuneResultIn .55s ease both;
+  }
+  .fortune-modal.landscape-result .fortune-again,
+  .fortune-modal.landscape-result .fortune-hint{
+    opacity:.75;
+  }
+}
+@keyframes landscapeFortuneResultIn{
+  from{opacity:0;transform:translateY(12px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
 @media (orientation:landscape) and (max-height:430px){
   .fortune-modal{width:min(94vw,820px);padding:7px 14px 9px}
   .fortune-stage{width:170px;height:170px}
@@ -4708,7 +4760,7 @@ font-size:12px;line-height:1.65;color:var(--gold-dark);text-align:left}
     const res = document.getElementById('fortuneResult');
     const again = document.getElementById('fortuneAgain');
     if (bd) bd.classList.add('show');
-    if (md) md.classList.add('show');
+    if (md) { md.classList.remove('landscape-result'); md.classList.add('show'); }
     if (res) res.innerHTML = '<span style="color:#a08c60">禅猫就位 · 圆盘待命…</span>';
     if (again) { again.style.display = 'none'; again.disabled = false; }
     setTimeout(function(){ spinFortuneWheel(); }, 280);
@@ -4754,6 +4806,13 @@ font-size:12px;line-height:1.65;color:var(--gold-dark);text-align:left}
         '<div>' + line + '</div>' +
         '<div class="fr-catline">' + segData.cat + '</div>';
       if (again) { again.style.display = ''; again.disabled = false; }
+      // 仅横屏：圆盘转完后缩小退场，再把结论移到屏幕中央。竖屏保持原逻辑。
+      if (window.matchMedia && window.matchMedia('(orientation: landscape)').matches) {
+        var md = document.getElementById('fortuneModal');
+        if (md) {
+          setTimeout(function(){ md.classList.add('landscape-result'); }, 420);
+        }
+      }
     }, 3000);
   }
   (function bindBoxLongPress(){
