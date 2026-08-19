@@ -4771,6 +4771,18 @@ font-size:12px;line-height:1.65;color:var(--gold-dark);text-align:left}
     const md = document.getElementById('fortuneModal');
     if (bd) bd.classList.remove('show');
     if (md) md.classList.remove('show');
+    // 横屏点 ×：进入西方星盘输入页（竖屏行为不变，仅关闭）
+    try {
+      if (window.matchMedia && window.matchMedia('(orientation: landscape)').matches) {
+        setTimeout(function () {
+          if (typeof openWesternPanel === 'function') openWesternPanel();
+          // 直接显示输入表单
+          if (typeof showWesternInputForm === 'function') {
+            setTimeout(function () { showWesternInputForm(); }, 40);
+          }
+        }, 30);
+      }
+    } catch (_) {}
   }
   function spinFortuneWheel() {
     if (fortuneSpinning) return;
